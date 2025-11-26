@@ -162,15 +162,7 @@ These are technical details that you might skip if it's not important for you no
 
 ///
 
-`RequestValidationError` is a sub-class of Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
-
-**FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
-
-But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with an HTTP status code `500`.
-
-It should be this way because if you have a Pydantic `ValidationError` in your *response* or anywhere in your code (not in the client's *request*), it's actually a bug in your code.
-
-And while you fix it, your clients/users shouldn't have access to internal information about the error, as that could expose a security vulnerability.
+cderror, as that could expose a security vulnerability.
 
 ### Override the `HTTPException` error handler { #override-the-httpexception-error-handler }
 
